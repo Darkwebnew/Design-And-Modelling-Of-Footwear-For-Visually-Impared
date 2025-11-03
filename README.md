@@ -207,12 +207,16 @@ DESIGN-AND-MODELLING-OF-FOOTWEAR-FOR-VISUALLY-IMPAIRED/
 We would like to express our sincere gratitude to:
 
 • Mrs. S.P. Chitra, HOD, Department of Mechatronics, for her invaluable guidance and support throughout the project
+
 • T.S. Srinivasan Polytechnic College, No.1, TVS School St, Vanagaram, Chennai, Tamil Nadu 600095, for providing resources, technical assistance, and encouragement for innovation
+
 • Department of Mechatronics for their support
+
 • The visually impaired community for their user feedback
+
 • The open source and assistive tech research community whose work paved the way
 
-This project was completed as part of the Final Year Diploma Project (2024–2025).
+This project was completed as part of the Final Year Diploma Project (2022).
 
 ---
 
