@@ -171,7 +171,7 @@ flowchart TD
 | **G. Varun** | Circuit Integration | 20700400 |
 | **J. C. Kuber** | Code Development | 20700373 |
 | **V. Venkat Charan** | Testing & Validation | 20700401 |
-| **Yashwantha Sai G.K** | Documentation | 20700406 |
+| **G. K. Yashwantha Sai** | Documentation | 20700406 |
 
 ### Project Guide:
 👨‍🏫 **Mrs. S.P. Chitra**  
