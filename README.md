@@ -1,212 +1,304 @@
-# Smart Footwear – IoT Based Assistive Walking System
+# Smart Footwear Assistive Walking System
+
+> *An IoT-powered assistive device for visually impaired individuals using ultrasonic sensing and haptic feedback*
 
 [![Status](https://img.shields.io/badge/status-active-brightgreen)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
-[![Platform](https://img.shields.io/badge/platform-Arduino%20%7C%20ESP8266%20%7C%20IoT-orange)](#software-components)
+[![Platform](https://img.shields.io/badge/platform-Arduino%20%7C%20IoT-orange)](#)
 [![Made with Love](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-red)](#)
 
-TS. Srinivasan Polytechnic College • Vanagaram, Chennai, Tamil Nadu 600095  
-Guide: Mrs. S. P. Chitra (HOD)
+---
+
+## 📑 Table of Contents
+
+- [🧠 Overview](#-overview)
+- [🎯 Problem Statement](#-problem-statement)
+- [⚙️ Working Principle](#️-working-principle)
+- [🪫 Hardware Components](#-hardware-components)
+- [💻 Software & Code](#-software--code)
+- [🏗️ System Architecture](#️-system-architecture)
+- [🔄 System Flow](#-system-flow)
+- [👥 Team](#-team)
+- [📂 Repository Structure](#-repository-structure)
+- [🎓 Acknowledgments](#-acknowledgments)
+- [📄 License](#-license)
+- [🔗 Documentation Links](#-documentation-links)
 
 ---
 
-## 📘 Overview
-Smart Footwear is an IoT-based assistive walking system designed to enhance mobility and safety for visually impaired individuals. It integrates ultrasonic sensing, haptic feedback, and optional audio alerts to detect obstacles and provide timely feedback during indoor and outdoor navigation.
+## 🧠 Overview
 
-- Problem: Difficulty detecting foot-level and mid-height obstacles causing accidents.
-- Objective: Build an affordable, compact, shoe-mounted system with multi-zone detection and feedback.
-- Impact: Improves safety, autonomy, and confidence for daily mobility.
+**Smart Footwear Assistive Walking System** is an innovative IoT-based assistive technology designed to enhance mobility and safety for visually impaired individuals. The system integrates ultrasonic sensors, haptic feedback mechanisms, and intelligent processing to detect obstacles and provide real-time alerts during navigation.
 
----
+This project combines **embedded systems**, **IoT connectivity**, and **assistive technology** to create an affordable, compact, and user-friendly solution that can be seamlessly integrated into everyday footwear.
 
-## ⚙️ Key Features
-| # | Feature | Description |
-|---|---|---|
-| 1 | Multi-Zone Obstacle Detection | Dual ultrasonic sensors for near (toe) and mid-level (knee) detection |
-| 2 | Haptic Feedback | Vibration motor intensity scales with obstacle proximity |
-| 3 | Audio Alerts | Optional buzzer/earpiece feedback for critical warnings |
-| 4 | Smart Thresholds | Configurable distance thresholds with debounce filtering |
-| 5 | Low Power | Sleep mode and efficient power management |
-| 6 | IoT Connectivity | ESP8266/ESP32 for logging and optional remote assistance |
-| 7 | Environmental Sensing | Optional LDR/IMU for ambient light and tilt detection |
-| 8 | Compact & Wearable | Lightweight, shoe-mounted enclosure |
-| 9 | Safety First | Short-circuit and polarity protection |
+### Key Highlights:
+- ✅ Real-time obstacle detection using ultrasonic sensors
+- ✅ Haptic feedback through vibration motors
+- ✅ Arduino-based embedded control system
+- ✅ Portable and wearable design
+- ✅ Low-power consumption
+- ✅ Scalable for future IoT enhancements
 
 ---
 
-## 🧑‍🤝‍🧑 Team
-| Name | Role | Email |
-|---|---|---|
-| Student A | Hardware & PCB | studentA@example.com |
-| Student B | Embedded & Firmware | studentB@example.com |
-| Student C | Cloud & App | studentC@example.com |
-| Student D | Testing & Documentation | studentD@example.com |
+## 🎯 Problem Statement
 
-> Replace placeholder emails with your actual contacts before publishing.
+Visually impaired individuals face significant challenges in detecting obstacles at ground level and mid-height during daily navigation. Traditional assistive devices like white canes have limitations:
+
+- ❌ Limited detection range
+- ❌ Inability to detect overhead or side obstacles
+- ❌ Requires manual scanning
+- ❌ Not hands-free
+
+**Our Solution**: A smart, shoe-mounted assistive system that provides autonomous obstacle detection and real-time feedback without requiring manual input.
+
+---
+
+## ⚙️ Working Principle
+
+The Smart Footwear system operates on the following principle:
+
+1. **Ultrasonic sensors** mounted on the footwear continuously emit ultrasonic waves
+2. When an obstacle is detected within the threshold range, the reflected waves are captured
+3. The **Arduino Nano** processes the sensor data and calculates obstacle distance
+4. Based on distance thresholds, the **vibration motor** is activated with varying intensity
+5. **Closer obstacles** trigger stronger vibrations for immediate alert
+6. The system operates continuously with low-power optimization
+
+### Detection Zones:
+- **Zone 1**: 0-30 cm → High-intensity vibration (Critical)
+- **Zone 2**: 30-60 cm → Medium-intensity vibration (Warning)
+- **Zone 3**: 60-100 cm → Low-intensity vibration (Caution)
+
+---
+
+## 🪫 Hardware Components
+
+| Component | Model/Type | Quantity | Purpose |
+|-----------|-----------|----------|----------|
+| **Microcontroller** | Arduino Nano | 1 | Main processing unit |
+| **Ultrasonic Sensor** | HC-SR04 | 2 | Obstacle detection (toe & knee level) |
+| **Vibration Motor** | 3V DC Motor | 2 | Haptic feedback |
+| **Power Supply** | Li-ion Battery (3.7V) | 1 | Power source |
+| **Voltage Regulator** | LM7805 | 1 | Voltage regulation |
+| **Transistor** | BC547 NPN | 2 | Motor driver |
+| **Resistors** | 10kΩ, 1kΩ | As needed | Circuit protection |
+| **Diode** | 1N4007 | 2 | Reverse polarity protection |
+| **Connecting Wires** | Jumper Wires | - | Circuit connections |
+| **PCB/Breadboard** | Custom PCB | 1 | Component mounting |
+| **Enclosure** | 3D Printed/ABS | 1 | Waterproof housing |
+
+---
+
+## 💻 Software & Code
+
+### Development Environment:
+- **IDE**: Arduino IDE 2.x
+- **Programming Language**: C/C++ (Arduino Framework)
+- **Libraries Used**:
+  - `NewPing.h` - Ultrasonic sensor control
+  - `Wire.h` - I2C communication (if applicable)
+
+### Code Structure:
+```
+Smart_Footwear_Assistive_Walking_System.ino
+├── setup()          // Initialize sensors, motors, pins
+├── loop()           // Main control logic
+├── detectObstacle() // Ultrasonic distance measurement
+├── activateVibration() // Haptic feedback control
+└── powerManagement() // Battery optimization
+```
+
+### Key Features in Code:
+- ⚡ Efficient polling mechanism
+- 🔋 Low-power sleep mode implementation
+- 🎚️ Adaptive vibration intensity based on distance
+- 🛡️ Debounce filtering for stable readings
+- 🔄 Continuous monitoring loop
 
 ---
 
 ## 🏗️ System Architecture
 
-<details>
-<summary>View ASCII Architecture Diagram</summary>
+![System Architecture](https://user-gen-media-assets.s3.amazonaws.com/seedream_images/eb7e973b-ffe4-4714-acb0-f7592b99396d.png)
 
-```
-+-----------------------------+          +-----------------------+
-|  Left Shoe Module           |          |  Right Shoe Module    |
-|  (HC-SR04, Vib Motor, MCU)  |          |  (HC-SR04, Vib Motor) |
-+--------------+--------------+          +------------+----------+
-               |                                  |
-               | I2C / GPIO                       | GPIO
-               v                                  v
-          +-----------+                     +-----------+
-          |  MCU      |<----UART/WiFi-----> |  ESP8266  |
-          | (ATmega/  |                     |  (Cloud)  |
-          |  ESP32)   |                     +-----------+
-          +-----+-----+                            |
-                |                                  |
-                v                                  v
-         +-------------+                    +--------------+
-         | Haptic PWM  |                    | Cloud/MQTT   |
-         |  Driver     |                    | (Optional)   |
-         +-------------+                    +--------------+
-```
-</details>
+### Architecture Overview:
 
-![System Architecture](architecture.png#gh-dark-mode-only)
-![System Architecture](architecture.png#gh-light-mode-only)
+The system follows a modular architecture with three primary layers:
+
+1. **Sensing Layer**: Ultrasonic sensors (HC-SR04) for obstacle detection
+2. **Processing Layer**: Arduino Nano for signal processing and decision making
+3. **Actuation Layer**: Vibration motors for haptic feedback
 
 ---
 
-## 🔌 Circuit Diagram
+## 🔄 System Flow
 
-<details>
-<summary>View ASCII Circuit Sketch</summary>
+### Operational Sequence:
+
+1. **System Initialization**
+   - Power ON
+   - Initialize Arduino Nano
+   - Configure sensor pins (Trigger/Echo)
+   - Initialize vibration motor pins
+
+2. **Continuous Monitoring**
+   - Ultrasonic sensors emit pulse signals
+   - Measure time for echo return
+   - Calculate distance: `Distance = (Time × Speed of Sound) / 2`
+
+3. **Distance Evaluation**
+   - Compare measured distance with threshold values
+   - Classify into danger zones (Critical/Warning/Caution)
+
+4. **Feedback Generation**
+   - If obstacle detected:
+     - Zone 1 (0-30cm): High-intensity vibration
+     - Zone 2 (30-60cm): Medium-intensity vibration
+     - Zone 3 (60-100cm): Low-intensity vibration
+   - If no obstacle: Motors OFF
+
+5. **Loop Continuation**
+   - Repeat monitoring cycle every 100ms
+   - Implement power-saving delays
+
+---
+
+## 👥 Team
+
+### Project Contributors:
+
+| Name | Role | Responsibilities |
+|------|------|------------------|
+| **Sriram V** | Project Lead & Developer | System design, firmware development, integration |
+| **Surothaaman R** | Hardware Engineer | Circuit design, PCB layout, component testing |
+| **Pavithra M** | Documentation & Design | Technical documentation, project presentation, design |
+| **Ms. V. Swedha** | Project Supervisor | Academic guidance, project mentorship, evaluation |
+
+---
+
+## 📂 Repository Structure
 
 ```
-HC-SR04(TRIG,ECHO) --> D5, D6
-Vibration Motor --> NPN Transistor -> D9 (PWM), +5V
-Buzzer (opt) --> D10
-ESP8266 UART --> MCU TX/RX (3.3V level shift)
-Power --> 18650 + Step-Down (5V/3.3V rails)
-```
-</details>
-
-![Circuit Diagram](circuit_diagram.png#gh-dark-mode-only)
-![Circuit Diagram](circuit_diagram.png#gh-light-mode-only)
-
----
-
-## 🧩 Bill of Materials (BOM)
-| Item | Qty | Notes |
-|---|---:|---|
-| HC-SR04 Ultrasonic Sensor | 2 | Toe and knee-level detection |
-| ATmega328P or ESP32 | 1 | Controller |
-| ESP8266 (NodeMCU) | 1 | Optional IoT connectivity |
-| Vibration Motor | 1 | Haptic feedback |
-| NPN Transistor + Diode | 1 set | Motor driver |
-| Buzzer (optional) | 1 | Critical alerts |
-| Li-ion 18650 + BMS | 1 | Power |
-| Step-Down Regulators | 2 | 5V and 3.3V |
-| Wires, Shoe Enclosure | — | Mounting |
-
----
-
-## 🧠 Working Principle
-1. Distance is sampled from ultrasonic sensors at 10–20 Hz.
-2. Filtered via moving average and debounce to eliminate false triggers.
-3. Haptic intensity maps to distance bands (closer = stronger vibration).
-4. Critical zone triggers audio alert and optional cloud event.
-5. Sleep/wake states optimize battery life when idle.
-
----
-
-## 🧪 Results & Testing
-- Detection range: 5–250 cm (configurable)
-- Average response latency: < 50 ms
-- Field tests show improved obstacle avoidance at foot and mid-level heights.
-
----
-
-## 📂 Repository Tree
-```
-.
-├── firmware/
-│   ├── src/
-│   │   └── main.ino
-│   └── lib/
-├── hardware/
-│   ├── pcb/
-│   └── enclosure/
+Smart-Footwear-Assistive-Walking-System/
+│
+├── src/
+│   └── Smart_Footwear_Assistive_Walking_System.ino  # Main Arduino source code
+│
 ├── docs/
-│   ├── architecture.png
-│   └── circuit_diagram.png
-└── README.md
+│   ├── DESIGN AND MODELLING OF FOOTWEAR FOR VISUALLY IMPAIRED REPORT.pdf
+│   ├── DESIGN AND MODELLING OF FOOTWEAR FOR VISUALLY IMPAIRED REPORT.docx
+│   └── Project_Presentation.pptx                    # Project presentation slides
+│
+├── hardware_design/
+│   ├── circuit_diagram.png                          # Circuit schematic
+│   ├── architecture_diagram.png                     # System architecture diagram
+│   ├── pcb_layout.pdf                               # PCB design files
+│   └── component_list.xlsx                          # Bill of materials
+│
+├── media/
+│   ├── demo_video.mp4                               # Working demonstration
+│   ├── product_images/                              # Product photographs
+│   └── prototype_images/                            # Prototype development images
+│
+├── test/
+│   ├── sensor_calibration.ino                       # Sensor testing scripts
+│   └── motor_feedback_test.ino                      # Vibration motor tests
+│
+├── README.md                                        # This file
+├── LICENSE                                          # MIT License
+└── .gitignore                                       # Git ignore rules
 ```
 
 ---
 
-## 🛠️ Quick Start
-```bash
-# Firmware (Arduino/PlatformIO)
-platformio run -t upload
-# or Arduino IDE: open firmware/src/main.ino and upload
+## 🎓 Acknowledgments
+
+We would like to express our sincere gratitude to:
+
+- **Ms. V. Swedha** - Project Supervisor, for her invaluable guidance and support throughout the project
+- **Department of Electronics and Communication Engineering** - For providing resources and facilities
+- **Our Institution** - For encouraging innovation and assistive technology research
+- **Visually Impaired Community** - For their insights and feedback during user testing
+- **Open Source Community** - For Arduino libraries and development tools
+
+This project was developed as part of our **Final Year Engineering Project** in the academic year 2024-2025.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see below for details:
+
+```
+MIT License
+
+Copyright (c) 2025 Sriram V, Surothaaman R, Pavithra M
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
 
-Example Arduino sketch:
-```cpp
-#include <Arduino.h>
-const int trig = 5, echo = 6, vib = 9;
-long readCM() {
-  digitalWrite(trig, LOW); delayMicroseconds(2);
-  digitalWrite(trig, HIGH); delayMicroseconds(10);
-  digitalWrite(trig, LOW);
-  long dur = pulseIn(echo, HIGH, 30000);
-  return dur / 58; // microseconds to cm
-}
-void setup(){ pinMode(trig, OUTPUT); pinMode(echo, INPUT); pinMode(vib, OUTPUT); }
-void loop(){
-  long d = readCM();
-  int pwm = d < 30 ? map(d, 5, 30, 255, 0) : 0;
-  analogWrite(vib, constrain(pwm, 0, 255));
-  delay(40);
-}
-```
+---
+
+## 🔗 Documentation Links
+
+### 📄 Project Reports:
+- [📕 Full Project Report (PDF)](./docs/DESIGN%20AND%20MODELLING%20OF%20FOOTWEAR%20FOR%20VISUALLY%20IMPAIRED%20REPORT.pdf)
+- [📘 Project Report (DOCX)](./docs/DESIGN%20AND%20MODELLING%20OF%20FOOTWEAR%20FOR%20VISUALLY%20IMPAIRED%20REPORT.docx)
+
+### 📊 Presentation:
+- [🎞️ Project Presentation (PPT)](./docs/Project_Presentation.pptx)
+
+### 💻 Source Code:
+- [⚙️ Main Arduino Code](./src/Smart_Footwear_Assistive_Walking_System.ino)
 
 ---
 
-## 🌐 Software Components
-- Firmware: Arduino (ATmega328P/ESP32)
-- Optional: ESP8266 for MQTT/HTTP telemetry
-- Cloud: Any MQTT broker (Mosquitto), dashboard (Node-RED/Grafana)
+## 🌟 Future Enhancements
+
+- 🌐 **IoT Integration**: Real-time location tracking via GPS and cloud connectivity
+- 📱 **Mobile App**: Companion app for configuration and emergency alerts
+- 🗣️ **Voice Feedback**: Audio directions using TTS (Text-to-Speech)
+- 🤖 **AI/ML**: Adaptive learning for different walking patterns
+- 🔋 **Solar Charging**: Extended battery life with solar panels
+- 🌧️ **Weather Resistance**: Enhanced waterproofing for all conditions
 
 ---
 
-## 🚀 Future Enhancements
-- BLE smartphone app with voice guidance
-- IMU-based step and fall detection
-- LiPo fuel gauging and auto-calibrated thresholds
-- 3D-printed ergonomic enclosure
+## 📞 Contact
+
+For queries, suggestions, or collaboration:
+
+- **Project Lead**: Sriram V
+- **Hardware Engineer**: Surothaaman R
+- **Documentation Lead**: Pavithra M
+- **Supervisor**: Ms. V. Swedha
 
 ---
 
-## 🙏 Acknowledgments
-- TS. Srinivasan Polytechnic College (Support & Lab access)
-- Guide: Mrs. S. P. Chitra (HOD)
-- Open-source community and assistive tech research papers
+<div align="center">
 
----
+### ⭐ If you find this project helpful, please consider giving it a star!
 
-## 📜 License
+**Made with ❤️ by Team Smart Footwear**
 
-Released under the MIT License. See [LICENSE](LICENSE) for details.
+*Empowering Independence Through Technology*
 
----
-
-## 🔗 Direct Links
-- Project Page: https://github.com/Darkwebnew/DESIGN-AND-MODELLING-OF-FOOTWEAR-FOR-VISUALLY-IMPAIRED
-- Issues: https://github.com/Darkwebnew/DESIGN-AND-MODELLING-OF-FOOTWEAR-FOR-VISUALLY-IMPAIRED/issues
-- Pull Requests: https://github.com/Darkwebnew/DESIGN-AND-MODELLING-OF-FOOTWEAR-FOR-VISUALLY-IMPAIRED/pulls
-
-![circuit_diagram](https://github.com/user-attachments/assets/d68f0efc-a715-4be6-a7db-7c08c03f1737)
-![architecture](https://github.com/user-attachments/assets/71cfbc07-00d5-43b2-a939-7b68e5a4bb73)
+</div>
