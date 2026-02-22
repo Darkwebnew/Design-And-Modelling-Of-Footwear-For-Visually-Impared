@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=gradient&amp;customColorList=1,5,15&amp;height=200&amp;section=header&amp;text=SmartStep&amp;fontSize=72&amp;fontColor=fff&amp;animation=twinkling" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,5,15&height=200&section=header&text=SmartStep&fontSize=72&fontColor=fff&animation=twinkling" width="100%"/>
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=20&pause=1000&color=00E5FF&center=true&vCenter=true&multiline=true&width=900&height=60&lines=Ultrasonic+Obstacle+Detection+%7C+Haptic+Feedback+%7C+Arduino+Embedded+System)](https://git.io/typing-svg)
 
@@ -619,7 +619,7 @@ Any unauthorized use, reproduction, or commercial deployment is strictly prohibi
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=gradient&amp;customColorList=1,5,15&amp;height=120&amp;section=footer&amp;animation=twinkling" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,5,15&height=150&section=footer&animation=twinkling" width="100%"/>
 
 **⭐ Star this repository if SmartStep helped your project!**
 
